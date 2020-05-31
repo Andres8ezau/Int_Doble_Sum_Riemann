@@ -1,0 +1,48 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import mpl_toolkits.mplot3d
+from sympy import *
+# Funcion a integrar = y / (1 + x*y)
+#Numero de cuadrados
+Ancho=20; Largo=45;
+
+#limites
+a = 0; b = 1; c = 0; d = 1;
+#altura de x
+deltax = (b - a) / Ancho
+
+
+#altura de y
+deltay = (d - c) / Largo
+#Area de cada cuadrado
+dA = deltax * deltay
+#vectores equiespaciados
+
+x = np.linspace(a, (b - deltax), Ancho);
+y = np.linspace(c, (d - deltay), Largo);
+#Dummy variable
+f = lambda x,y: 1.0*ones(size(x))
+#Funcion
+f = lambda x,y: y / (1 + x*y)
+#matrices de coordenadas
+[X, Y] = np.meshgrid(x, y);
+#Sumatoria
+Suma=sum(dA * f(X, Y))
+Suma = sum(Suma)
+
+int(Suma)
+
+print(Suma)
+
+Z = f(X, Y)
+fig = plt.figure()
+ax = plt.axes(projection='3d')
+ax.contour3D(X, Y, Z, 50, cmap='viridis')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z');
+
+
+
+
+plt.show()
