@@ -1,0 +1,9 @@
+from scipy import integrate
+f = lambda y, x: y / (1 + x*y)
+
+ReS = integrate.dblquad(f, 0, 1, lambda x: 0, lambda x: 1)
+print(ReS)
+Fg = lambda y, x: x +3*y + 1
+
+ReO = integrate.dblquad(Fg, 0, 4, lambda x: 0, lambda x: 4)
+print(ReO)
